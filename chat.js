@@ -4,7 +4,7 @@ window.addEventListener('load', () => {
   var answerDesc = {};
   var candidates = [];
   var channel = {};
-  var pc = new RTCPeerConnection();
+  var pc = new RTCPeerConnection({ 'iceServers': [{ 'url': 'stun:stun.l.google.com:19302' }]});
   pc.onicecandidate = (peerConnection, e) => {
     console.log("onicecandidate pc1: ", peerConnection, e);
     console.log("candidate:", JSON.stringify(peerConnection.candidate));

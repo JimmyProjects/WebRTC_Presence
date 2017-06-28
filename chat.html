@@ -1,0 +1,31 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>WebRTC</title>
+  <meta name="description" content="WebRTC">
+  <meta name="author" content="Jimmy">
+
+  <link rel="stylesheet" href="main.css">
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <button id="inviteButton">Invite</button>
+  <button id="connectButton">Connect</button>
+  <textarea id="offerTextArea" placeholder="offer"></textarea>
+  <textarea id="answerTextArea" placeholder="answer"></textarea>
+  
+  <textarea id="messageTextArea"></textarea>
+  <button id="sendButton">Send</button>
+  
+  
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+  <script src="chat.js"></script>
+</body>
+</html>

@@ -16,11 +16,28 @@
 </head>
 
 <body>
-  <img id="photo" />
+  <!-- <img id="photo" />
   <video></video>
   <button id="startbutton">Take photo</button>
-  <canvas id="canvas"></canvas>
+  <canvas id="canvas"></canvas> -->
   
+  <video id="localVideo" autoplay muted></video>
+  <textarea id="myIdTextArea"></textarea>
+  <button id="startButton">Start</button>
+  <button id="stopButton" disabled>Stop</button>
+  <textarea id="answerTextArea"></textarea>
+  <button id="answerButton">Start</button>
+  <textarea id="remoteIceTextArea"></textarea>
+  <button id="remoteIceButton">Add</button>
+  
+  <video id="remoteVideo" autoplay></video>
+  <textarea id="remoteIdTextArea"></textarea>
+  <button id="connectButton">Connect</button>
+  <textarea id="iceTextArea"></textarea>
+  <button id="iceButton">Add</button>
+  <button id="disconnectButton" disabled>Disconnect</button>
+  
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

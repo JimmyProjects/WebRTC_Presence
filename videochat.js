@@ -1,4 +1,11 @@
 window.addEventListener('load', () => {
+  var sendButton = document.getElementById('sendButton');
+  var connectButton = document.getElementById('connectButton');
+  var inviteButton = document.getElementById('inviteButton');
+  var videoButton = document.getElementById('videoButton');
+  var muteButton = document.getElementById('muteButton');
+  var messageTextArea = document.getElementById('messageTextArea');
+  
   var host = false;
   var offerDesc = {};
   var answerDesc = {};
@@ -47,10 +54,11 @@ window.addEventListener('load', () => {
     };
     channel.onmessage = event => {
       console.log("onmessage", event);
+      var textDiv = document.getElementById('textDiv');
+      textDiv.innerHTML += event.data + '<br>';
     };
   }
-  
-  var inviteButton = document.getElementById('inviteButton');
+
   inviteButton.onclick = () => {
     host = true;
     channel = pc.createDataChannel('sendDataChannel');
@@ -77,7 +85,6 @@ window.addEventListener('load', () => {
     });
   };
   
-  var connectButton = document.getElementById('connectButton');
   connectButton.onclick = () => {
     var offerTextArea = document.getElementById('offerTextArea');
     var answerTextArea = document.getElementById('answerTextArea');
@@ -126,14 +133,17 @@ window.addEventListener('load', () => {
     }
   };
   
-  var sendButton = document.getElementById('sendButton');
   sendButton.onclick = () => {
-    var messageTextArea = document.getElementById('messageTextArea');
     channel.send(messageTextArea.value);
     console.log("sent", messageTextArea.value);
+    
+    var textDiv = document.getElementById('textDiv');
+    textDiv.innerHTML += messageTextArea.value + '<br>';
+    
+    messageTextArea.value = '';
+    messageTextArea.focus();
   };
   
-  var videoButton = document.getElementById('videoButton');
   videoButton.onclick = () => {
     navigator.mediaDevices.getUserMedia({video:{ width: 320, height: 180 }, audio:true})
       .then(stream => {
@@ -144,5 +154,20 @@ window.addEventListener('load', () => {
       .catch(err => { 
         console.log(err.name + ": " + err.message); 
       });
+  };
+  
+  muteButton.onclick = () => {
+    var remoteVideo = document.getElementById('remoteVideo');
+    remoteVideo.muted = !remoteVideo.muted;
+    if (remoteVideo.muted) { muteButton.innerText = "Unmute"; }
+    else { muteButton.innerText = "Mute"; }
+  };
+  
+  messageTextArea.onkeyup = e => {
+    if (e.keyCode === 13) { // Enter
+      e.preventDefault();
+      sendButton.click();
+      return false;
+    }
   };
 });

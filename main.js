@@ -5,7 +5,7 @@ window.addEventListener('load', () => {
   var startButton = document.getElementById('startButton');
   var stopButton = document.getElementById('stopButton');
   startButton.onclick = () => {
-    navigator.mediaDevices.getUserMedia({video:{ width: 320, height: 180 }, audio:false})
+    navigator.mediaDevices.getUserMedia({video:{ width: 320, height: 180 }, audio:true})
       .then((stream) => {
         localStream = stream;
         var localVideo = document.getElementById('localVideo');

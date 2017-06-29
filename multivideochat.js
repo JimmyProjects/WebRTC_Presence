@@ -24,6 +24,9 @@ window.addEventListener('load', () => {
   };
   
   stopVideoButton.onclick = () => {
+    peerConnections.forEach(pc => {
+      pc.removeStream(localStream);
+    });
     localStream.getTracks().forEach(track => {
         track.stop();
     });
@@ -64,6 +67,9 @@ window.addEventListener('load', () => {
     var channel = {};
     var pc = new RTCPeerConnection({ 'iceServers': [{ 'urls': 'stun:stun.l.google.com:19302' }]});
     peerConnections.push(pc);
+    if (localStream) {
+      pc.addStream(localStream);
+    }
     pc.onicecandidate = (peerConnection, e) => {
       console.log("onicecandidate pc1: ", peerConnection, e);
       console.log("candidate:", JSON.stringify(peerConnection.candidate));

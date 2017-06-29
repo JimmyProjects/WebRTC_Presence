@@ -4,4 +4,11 @@
 
 video {
   //display: none;
+  border: 1px solid black;
+  width: 320px;
+  height: 180px;
+}
+
+.hidden {
+  display: none;
 }
